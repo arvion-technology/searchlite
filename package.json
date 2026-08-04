@@ -1,0 +1,25 @@
+{
+  "name": "searchlite",
+  "version": "1.0.0",
+  "description": "An embeddable full-text search engine: inverted index, BM25 ranking, fuzzy matching, synonyms, facets and highlighted snippets. A few hundred KB instead of a cluster.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "author": "Arvion Technologies <hello@arviontech.net> (https://arviontech.net)",
+  "homepage": "https://arvion-technology.github.io/labs/demos/searchlite/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvion-technology/searchlite.git"
+  },
+  "scripts": {
+    "test": "node --test",
+    "demo": "node scripts/serve.mjs . 4173",
+    "shot": "node scripts/shot.mjs 1440 900 docs/screenshot.png",
+    "shot:2": "node scripts/shot.mjs 1440 900 docs/screenshot-2.png '#q=kubernets~1'",
+    "verify": "node --test test/ && node scripts/serve-check.mjs",
+    "bench": "node scripts/bench.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
