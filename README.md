@@ -2,13 +2,13 @@
 <img src="docs/demo.gif" alt="SearchLite demo: results, facets and a BM25 score breakdown" width="100%" />
 </div>
 
-<sub>Recorded from the live demo — <a href="docs/demo.mp4">MP4</a> · <a href="docs/screenshot.png">static frame</a></sub>
+<sub>Recorded from the live demo, <a href="docs/demo.mp4">MP4</a> · <a href="docs/screenshot.png">static frame</a></sub>
 
 # SearchLite
 
 An embeddable full-text search engine in plain JavaScript. Porter stemming, a
 positional inverted index, BM25 ranking with configurable `k1` and `b`, phrase,
-prefix and fuzzy queries, facets, synonyms and highlighted snippets — a few
+prefix and fuzzy queries, facets, synonyms and highlighted snippets, a few
 modules instead of a search cluster.
 
 [**Open the live demo**](https://arvion-technology.github.io/labs/demos/searchlite/demo/) · [MIT](LICENSE)
@@ -22,27 +22,27 @@ afternoon. The demo indexes 60 documents in the browser and shows the score of
 every term, so a surprising result can be explained rather than guessed at.
 
 The relevance lab is the part worth opening. Drag `b` to zero and the same query
-reranks; open any result and each query term's contribution — tf, df, idf, field
-weight — is listed, and the breakdown is asserted in the tests to sum to the
+reranks; open any result and each query term's contribution, tf, df, idf, field
+weight, is listed, and the breakdown is asserted in the tests to sum to the
 document score.
 
 ## What it does
 
-- **Porter stemmer** — the original 1980 algorithm, tested against the published
+- **Porter stemmer**: the original 1980 algorithm, tested against the published
   vocabulary sample (`caresses → caress`, `relational → relat`, and so on).
-- **Positional inverted index** — three fields (title, tags, body) with one
+- **Positional inverted index**: three fields (title, tags, body) with one
   posting per term-document pair and the token positions in that field.
-- **BM25** — configurable `k1` (term-frequency saturation) and `b` (length
+- **BM25**: configurable `k1` (term-frequency saturation) and `b` (length
   normalisation), with per-field weights.
-- **Query syntax** — plain terms are AND-ed, `"exact phrase"` checks adjacency,
+- **Query syntax**: plain terms are AND-ed, `"exact phrase"` checks adjacency,
   `retr*` expands a prefix, `jitter~1` expands by edit distance.
-- **Facets and filters** — category, tag and year counts computed for the current
+- **Facets and filters**: category, tag and year counts computed for the current
   match set; filters narrow it without changing the counts you use to decide.
-- **Synonyms and stopwords** — synonyms add recall at a lower weight; stopwords
+- **Synonyms and stopwords**: synonyms add recall at a lower weight; stopwords
   are dropped from queries but kept in the index so phrase positions stay true.
-- **Highlighted snippets** — returned as segments, not HTML, so the demo renders
+- **Highlighted snippets**: returned as segments, not HTML, so the demo renders
   text nodes and `<mark>` elements and a document containing markup stays text.
-- **Benchmark harness** — `npm run bench` reports index size, build time and
+- **Benchmark harness**: `npm run bench` reports index size, build time and
   p50/p95 query latency for seven query shapes.
 
 ## Screenshots
@@ -140,7 +140,7 @@ would shift every later position and make phrase queries approximate.
 **Prefix and fuzzy queries expand over the vocabulary.** `retr*` selects indexed
 terms starting with that prefix and scores documents containing any of them;
 `jitter~1` selects terms within a Levenshtein distance of one, ordered by distance.
-Both are capped — 24 expansions — because an unbounded expansion on a large
+Both are capped, 24 expansions, because an unbounded expansion on a large
 vocabulary is a denial-of-service path, not a feature.
 
 **Facets are counts before their own filter.** The match set is computed first,
@@ -161,16 +161,16 @@ npm test
 
 34 tests on `node:test`:
 
-- `porter.test.js` — 60+ published stemmer pairs, measure and vowel detection,
+- `porter.test.js`: 60+ published stemmer pairs, measure and vowel detection,
   short/non-alpha pass-through.
-- `tokenizer.test.js` — unicode tokenisation, positions, stopwords, query parsing
+- `tokenizer.test.js`: unicode tokenisation, positions, stopwords, query parsing
   for terms/phrases/prefixes/fuzzy, edit distance.
-- `bm25.test.js` — idf monotonicity, tf saturation, length penalty and `b=0`,
+- `bm25.test.js`: idf monotonicity, tf saturation, length penalty and `b=0`,
   field-weighted contribution sums.
-- `index.test.js` — corpus stats, title boost, phrase adjacency, prefix/fuzzy
+- `index.test.js`: corpus stats, title boost, phrase adjacency, prefix/fuzzy
   expansion, synonyms, facets/filters, exact score-breakdown sums, k1/b effects,
   empty queries and no-match behaviour.
-- `highlighter.test.js` — whole-token marks, prefix marks, snippet windows and
+- `highlighter.test.js`: whole-token marks, prefix marks, snippet windows and
   clipping flags, markup stays plain text.
 
 ## Limitations
@@ -189,7 +189,7 @@ npm test
 - **Fuzzy expansion is a linear vocabulary scan.** It is bounded and fine for a few
   thousand terms. At scale it needs an n-gram index or a Levenshtein automaton.
 - **Phrase queries ignore stopwords inside the phrase.** `"the quick brown"` drops
-  `the` and then checks whether `quick` and `brown` are adjacent — which can match
+  `the` and then checks whether `quick` and `brown` are adjacent, which can match
   text where they are one word apart. Kept because it is cheap; documented because
   it is surprising.
 - **60 documents is a demo corpus.** The ranking code is the same code used on a

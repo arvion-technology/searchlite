@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light" />
-  <title>SearchLite — positional index, BM25 and fuzzy search in the browser</title>
+  <title>SearchLite | positional index, BM25 and fuzzy search in the browser</title>
   <meta name="description" content="An embeddable full-text search engine: Porter stemming, a positional inverted index, BM25 with configurable k1/b, phrase/prefix/fuzzy queries, facets and highlighted snippets." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 9 L91 91 H73 L50 52 L27 91 H9 Z' fill='%23f5c26b'/><circle cx='50' cy='31' r='6.6' fill='%230b0f1a'/><path d='M50 52 L67 90 H33 Z' fill='%230b0f1a'/></svg>" />
   <link rel="stylesheet" href="arvion.css" />
@@ -26,8 +26,8 @@
       <div class="search-box">
         <span class="search-icon" aria-hidden="true">⌕</span>
         <input id="q" class="input" autocomplete="off" spellcheck="false"
-               aria-label="Search documents" placeholder='Search 60 documents — try "exponential backoff", retr*, or jitter~1' />
-        <kbd id="latency">—</kbd>
+               aria-label="Search documents" placeholder='Search 60 documents, try "exponential backoff", retr*, or jitter~1' />
+        <kbd id="latency">, </kbd>
       </div>
       <span class="spacer"></span>
       <span class="badge" id="index-badge">60 docs</span>
@@ -61,12 +61,12 @@
         <div class="card" style="padding:15px;margin-top:13px">
           <div class="card-head" style="margin-bottom:10px"><div class="card-title">Index</div></div>
           <dl class="kv" style="margin:0;font-size:12px">
-            <dt>Documents</dt><dd class="mono" id="stat-docs">–</dd>
-            <dt>Terms</dt><dd class="mono" id="stat-terms">–</dd>
-            <dt>Postings</dt><dd class="mono" id="stat-postings">–</dd>
-            <dt>Positions</dt><dd class="mono" id="stat-positions">–</dd>
-            <dt>Est. size</dt><dd class="mono" id="stat-bytes">–</dd>
-            <dt>Build</dt><dd class="mono" id="stat-build">–</dd>
+            <dt>Documents</dt><dd class="mono" id="stat-docs">, </dd>
+            <dt>Terms</dt><dd class="mono" id="stat-terms">, </dd>
+            <dt>Postings</dt><dd class="mono" id="stat-postings">, </dd>
+            <dt>Positions</dt><dd class="mono" id="stat-positions">, </dd>
+            <dt>Est. size</dt><dd class="mono" id="stat-bytes">, </dd>
+            <dt>Build</dt><dd class="mono" id="stat-build">, </dd>
           </dl>
           <p class="small muted" style="margin:10px 0 0">Positions make phrase queries possible; they are also why the index is larger than a bag of words.</p>
         </div>
@@ -81,7 +81,7 @@
           </div>
           <span class="spacer"></span>
           <div class="row" style="gap:8px">
-            <span class="small muted" id="result-meta">—</span>
+            <span class="small muted" id="result-meta">, </span>
             <select class="select" id="limit" aria-label="Results per page" style="width:92px">
               <option value="5">5 results</option>
               <option value="10" selected>10 results</option>
@@ -102,8 +102,8 @@
           <div id="lab-empty" class="small muted">Select a result to inspect its score.</div>
           <div id="lab-body" hidden>
             <div class="lab-doc">
-              <div class="lab-title" id="lab-title">—</div>
-              <div class="small muted" id="lab-meta">—</div>
+              <div class="lab-title" id="lab-title">, </div>
+              <div class="small muted" id="lab-meta">, </div>
               <div class="row" style="align-items:baseline;gap:8px;margin-top:8px">
                 <span class="stat-value gold" id="lab-score" style="font-size:24px">0</span>
                 <span class="small muted">total score</span>

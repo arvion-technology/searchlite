@@ -35,7 +35,7 @@ test("no match returns the head of the text, marked as clipped when shortened", 
   assert.ok(result.text.endsWith("…"));
 });
 
-test("segments are plain strings — a script tag is never interpreted", () => {
+test("segments are plain strings, a script tag is never interpreted", () => {
   const malicious = "hello <script>alert(1)</script> retry";
   const segments = segmentText(malicious, [{ term: "retry", prefix: false }]);
   assert.ok(segments.some((segment) => segment.text.includes("<script>") && !segment.match));
